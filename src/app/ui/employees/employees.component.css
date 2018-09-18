@@ -1,0 +1,17 @@
+table {
+  width: 100%;
+  margin-top:10px;
+}
+
+th.mat-sort-header-sorted {
+  color: black;
+}
+
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+.search {
+  margin-right: 10px;
+}

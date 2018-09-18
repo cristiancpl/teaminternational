@@ -88,10 +88,6 @@ import {
   declarations: [LayoutComponent, HeaderComponent, FooterComponent, EmployeesComponent, SomeUserComponent],
   exports: [
     LayoutComponent,
-
-   
-
-
   ]
 })
 export class UiModule { }
