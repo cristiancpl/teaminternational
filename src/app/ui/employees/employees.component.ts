@@ -28,7 +28,7 @@ const ELEMENT_DATA: PeriodicElement[] = [
 })
 export class EmployeesComponent implements OnInit {
 
-  displayedColumns: string[] = ['name', 'position', 'weight', 'symbol'];
+  displayedColumns: string[] = ['name', 'position', 'weight', 'symbol', 'actions'];
   dataSource = new MatTableDataSource(ELEMENT_DATA);
   @ViewChild('filterValue') filterValueRef: ElementRef;
 

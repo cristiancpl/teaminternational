@@ -1,6 +1,6 @@
 table {
   width: 100%;
-  margin-top:10px;
+  margin-top: 10px;
 }
 
 th.mat-sort-header-sorted {
@@ -14,4 +14,38 @@ th.mat-sort-header-sorted {
 
 .search {
   margin-right: 10px;
+}
+
+.action {
+  margin: 10px;
+}
+
+.name {
+  width: 40%;
+}
+
+.age {
+  width: 10%
+}
+
+.user-name {
+  width: 20%
+}
+
+.hire-date {
+  width: 15%
+}
+
+.actions {
+  width: 15%
+}
+
+.table-header {
+  background-color: lightgrey;
+  font-weight: 800 !important;
+  /*text-align: left;*/
+}
+
+.buttons {
+  margin-top : 25px;
 }
