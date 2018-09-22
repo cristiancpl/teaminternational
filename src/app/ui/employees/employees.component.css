@@ -16,12 +16,13 @@ th.mat-sort-header-sorted {
   margin-right: 10px;
 }
 
-.action {
-  margin: 10px;
-}
-
 .name {
   width: 40%;
+}
+
+.name-text {
+  flex-direction: column;
+  text-align: left;
 }
 
 .age {
@@ -47,5 +48,5 @@ th.mat-sort-header-sorted {
 }
 
 .buttons {
-  margin-top : 25px;
+  margin-top: 25px;
 }

@@ -1,18 +1,90 @@
-<div class="example-container">
-  <mat-form-field>
-    <input matInput placeholder="Input">
-  </mat-form-field>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <h3>New employee</h3>
+    </div>
+    <div class="col-md-12">
+      <div class="row col-md-9 col-md-offset-5">
 
-  <mat-form-field>
-    <textarea matInput placeholder="Textarea"></textarea>
-  </mat-form-field>
+        <div class="col-md-6 inputs-container">
+          <mat-form-field>
+            <input matInput placeholder="Name">
+          </mat-form-field>
 
-  <mat-form-field>
-    <mat-select placeholder="Favorite food">
-      <mat-option *ngFor="let food of foods" [value]="food.value">
-        {{food.viewValue}}
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
+          <mat-form-field>
+            <input matInput [matDatepicker]="pickerDob" placeholder="Dob">
+            <mat-datepicker-toggle matSuffix [for]="pickerDob"></mat-datepicker-toggle>
+            <mat-datepicker #pickerDob></mat-datepicker>
+          </mat-form-field>
 
+          <mat-form-field>
+            <mat-select placeholder="Country">
+              <mat-option *ngFor="let food of foods" [value]="food.value">
+                {{food.viewValue}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field>
+            <input matInput placeholder="Username">
+          </mat-form-field>
+
+          <mat-form-field>
+            <input matInput [matDatepicker]="pickerHireDate" placeholder="Hire Date">
+            <mat-datepicker-toggle matSuffix [for]="pickerHireDate"></mat-datepicker-toggle>
+            <mat-datepicker #pickerHireDate></mat-datepicker>
+          </mat-form-field>
+
+          <mat-slide-toggle labelPosition="before" class="status">Status</mat-slide-toggle>
+
+        </div>
+
+        <div class="col-md-6 inputs-container">
+
+          <mat-button-toggle-group name="fontStyle" class="area">
+            <mat-button-toggle value="Services">Services</mat-button-toggle>
+            <mat-button-toggle value="kitchen">kitchen</mat-button-toggle>
+          </mat-button-toggle-group>
+
+
+          <mat-form-field class="job-title">
+            <mat-select placeholder="Job title">
+              <mat-option *ngFor="let food of foods" [value]="food.value">
+                {{food.viewValue}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+
+
+          <mat-form-field class="tip-rate">
+            <input matInput placeholder="Tip Rate">
+          </mat-form-field>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+
+    <div class="buttons">
+      <button mat-button class="button">
+        <i class="fa fa-angle-left fa-lg action"></i>
+        Back
+      </button>
+
+      <button mat-stroked-button class="button">
+        Save
+      </button>
+
+    </div>
+
+
+
+
+  </div>
 </div>
+
+

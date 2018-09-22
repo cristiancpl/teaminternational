@@ -1,8 +1,34 @@
-.example-container {
+.inputs-container {
   display: flex;
   flex-direction: column;
 }
 
-.example-container > * {
-  width: 100%;
+  .inputs-container > * {
+    width: 100%;
+  }
+
+.area {
+  margin-top: 30px;
+}
+
+.job-title {
+  margin-top: 66px;
+}
+
+.tip-rate {
+  margin-top: 63px;
+}
+
+
+.buttons {
+  margin-top: 50px;
+}
+
+.button {
+  margin-right: 10px;
+  margin-left: 10px;
+}
+
+.status {
+    margin-top: 10px;
 }

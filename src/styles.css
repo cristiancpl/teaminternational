@@ -6,3 +6,7 @@
 .link {
   cursor: pointer;
 }
+
+.action {
+  margin: 10px;
+}
