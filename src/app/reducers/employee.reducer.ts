@@ -1,7 +1,8 @@
 import { Action } from '@ngrx/store';
-import { Employee, ItemBase } from './../models/employees.model';
+import { Employee } from './../models/employees.model';
 import * as EmployeeActions from './../actions/employess.actions';
 import { Country } from '../models/countries.model';
+import { ItemBase, JobTitle } from '../models/base.model';
 
 const initialState: Employee[] = [{
   id: 1,
@@ -12,7 +13,7 @@ const initialState: Employee[] = [{
   username: 'cperez',
   hireDate: new Date(2016, 8, 3),
   area: { id: 1 } as ItemBase,
-  jobTitle: { id: 1 } as ItemBase,
+  jobTitle: { id: 1 } as JobTitle,
   tipRate: 0,
   age: 25
 },
@@ -25,7 +26,7 @@ const initialState: Employee[] = [{
   username: 'janierx',
   hireDate: new Date(2012, 2, 5),
   area: { id: 2 } as ItemBase,
-  jobTitle: { id: 2 } as ItemBase,
+  jobTitle: { id: 6 } as JobTitle,
   tipRate: 2.3,
   age: 32
 },
@@ -38,7 +39,7 @@ const initialState: Employee[] = [{
   username: 'falbeiro',
   hireDate: new Date(2017, 5, 20),
   area: { id: 2 } as ItemBase,
-  jobTitle: { id: 2 } as ItemBase,
+  jobTitle: { id: 7 } as JobTitle,
   tipRate: 0,
   age: 20
 },
@@ -50,8 +51,8 @@ const initialState: Employee[] = [{
   country: { alpha3Code: 'COL' } as Country,
   username: 'luzelena',
   hireDate: new Date(),
-  area: { id: 2 } as ItemBase,
-  jobTitle: { id: 2 } as ItemBase,
+  area: { id: 1 } as ItemBase,
+  jobTitle: { id: 5 } as JobTitle,
   tipRate: 0,
   age: 43
 }

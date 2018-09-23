@@ -48,6 +48,7 @@ import {
   MatTooltipModule,
   MatTreeModule,
 } from '@angular/material';
+import { JobTitleChildComponent } from './job-title-child/job-title-child.component';
 
 @NgModule({
   imports: [
@@ -92,7 +93,7 @@ import {
     MatTreeModule,
 
   ],
-  declarations: [LayoutComponent, HeaderComponent, FooterComponent, EmployeesComponent, SomeUserComponent],
+  declarations: [LayoutComponent, HeaderComponent, FooterComponent, EmployeesComponent, SomeUserComponent, JobTitleChildComponent],
   exports: [
     LayoutComponent,
   ]

@@ -66,18 +66,15 @@
             <mat-button-toggle *ngFor="let area of areas" [value]="area">{{area.name}}</mat-button-toggle>
           </mat-button-toggle-group>
 
-          <mat-form-field class="job-title">
-            <mat-select [ngModel]="currentEmployee?.jobTitle"
-                        (ngModelChange)="currentEmployee.jobTitle = $event"
-                        placeholder="Job title">
-              <mat-option *ngFor="let job of job_titles" [value]="job">
-                {{job.name}}
-              </mat-option>
-            </mat-select>
-          </mat-form-field>
+          <app-job-title-child [area]="currentEmployee?.area"
+                               [job_title]="currentEmployee?.jobTitle"
+                               (selectJobTitle)="selectJobTitleParent($event)"
+                               class="job-title">
+          </app-job-title-child>
 
-
-          <mat-form-field class="tip-rate">
+          <mat-form-field *ngIf="currentEmployee?.jobTitle?.id == jobsTitleEnum.waitress.valueOf() ||
+                          currentEmployee?.jobTitle?.id == jobsTitleEnum.dining.valueOf()"
+                          class="tip-rate">
             <input matInput
                    [ngModel]="currentEmployee?.tipRate"
                    (ngModelChange)="currentEmployee.tipRate = $event"
@@ -89,24 +86,16 @@
       </div>
 
     </div>
-
-
-
     <div class="buttons">
-      <button (click)="back()" mat-button class="button">
+      <button mat-button (click)="back()" class="button">
         <i class="fa fa-angle-left fa-lg action"></i>
         Back
       </button>
 
-      <button mat-stroked-button class="button">
+      <button mat-stroked-button (click)="save()" class="button">
         Save
       </button>
-
     </div>
-
-
-
-
   </div>
 </div>
 

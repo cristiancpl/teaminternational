@@ -1,9 +1,8 @@
-import { Injectable, Injector } from '@angular/core';
-import { Http, Response } from '@angular/http';
-import { Headers, RequestOptions } from '@angular/http';
-
+import { Injectable } from '@angular/core';
+import { Http } from '@angular/http';
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
+
 import { Country } from '../models/countries.model';
 
 @Injectable()
