@@ -8,57 +8,80 @@
 
         <div class="col-md-6 inputs-container">
           <mat-form-field>
-            <input matInput placeholder="Name">
+            <input matInput
+                   [ngModel]="currentEmployee?.name"
+                   (ngModelChange)="currentEmployee.name = $event"
+                   placeholder="Name">
           </mat-form-field>
 
           <mat-form-field>
-            <input matInput [matDatepicker]="pickerDob" placeholder="Dob">
+            <input matInput
+                   [ngModel]="currentEmployee?.dob"
+                   (ngModelChange)="currentEmployee.dob = $event"
+                   [matDatepicker]="pickerDob"
+                   placeholder="Dob">
             <mat-datepicker-toggle matSuffix [for]="pickerDob"></mat-datepicker-toggle>
             <mat-datepicker #pickerDob></mat-datepicker>
           </mat-form-field>
 
           <mat-form-field>
-            <mat-select placeholder="Country">
-              <mat-option *ngFor="let food of foods" [value]="food.value">
-                {{food.viewValue}}
+            <mat-select [ngModel]="currentEmployee?.country"
+                        (ngModelChange)="currentEmployee.country = $event"
+                        placeholder="Country">
+              <mat-option *ngFor="let country of countries" [value]="country">
+                {{country.name}}
               </mat-option>
             </mat-select>
           </mat-form-field>
 
           <mat-form-field>
-            <input matInput placeholder="Username">
+            <input matInput
+                   [ngModel]="currentEmployee?.username"
+                   (ngModelChange)="currentEmployee.username = $event"
+                   placeholder="Username">
           </mat-form-field>
 
           <mat-form-field>
-            <input matInput [matDatepicker]="pickerHireDate" placeholder="Hire Date">
+            <input matInput
+                   [ngModel]="currentEmployee?.hireDate"
+                   (ngModelChange)="currentEmployee.hireDate = $event"
+                   [matDatepicker]="pickerHireDate"
+                   placeholder="Hire Date">
             <mat-datepicker-toggle matSuffix [for]="pickerHireDate"></mat-datepicker-toggle>
             <mat-datepicker #pickerHireDate></mat-datepicker>
           </mat-form-field>
 
-          <mat-slide-toggle labelPosition="before" class="status">Status</mat-slide-toggle>
-
+          <mat-slide-toggle [ngModel]="currentEmployee?.status"
+                            (ngModelChange)="currentEmployee.status = $event"
+                            labelPosition="before"
+                            class="status">Status</mat-slide-toggle>
         </div>
 
         <div class="col-md-6 inputs-container">
 
-          <mat-button-toggle-group name="fontStyle" class="area">
-            <mat-button-toggle value="Services">Services</mat-button-toggle>
-            <mat-button-toggle value="kitchen">kitchen</mat-button-toggle>
+          <mat-button-toggle-group [ngModel]="currentEmployee?.area"
+                                   (ngModelChange)="currentEmployee.area = $event"
+                                   name="areaname"
+                                   class="area">
+            <mat-button-toggle *ngFor="let area of areas" [value]="area">{{area.name}}</mat-button-toggle>
           </mat-button-toggle-group>
 
-
           <mat-form-field class="job-title">
-            <mat-select placeholder="Job title">
-              <mat-option *ngFor="let food of foods" [value]="food.value">
-                {{food.viewValue}}
+            <mat-select [ngModel]="currentEmployee?.jobTitle"
+                        (ngModelChange)="currentEmployee.jobTitle = $event"
+                        placeholder="Job title">
+              <mat-option *ngFor="let job of job_titles" [value]="job">
+                {{job.name}}
               </mat-option>
             </mat-select>
           </mat-form-field>
 
 
-
           <mat-form-field class="tip-rate">
-            <input matInput placeholder="Tip Rate">
+            <input matInput
+                   [ngModel]="currentEmployee?.tipRate"
+                   (ngModelChange)="currentEmployee.tipRate = $event"
+                   placeholder="Tip Rate">
           </mat-form-field>
 
         </div>
@@ -70,7 +93,7 @@
 
 
     <div class="buttons">
-      <button mat-button class="button">
+      <button (click)="back()" mat-button class="button">
         <i class="fa fa-angle-left fa-lg action"></i>
         Back
       </button>

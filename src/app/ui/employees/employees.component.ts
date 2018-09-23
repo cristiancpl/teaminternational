@@ -1,6 +1,16 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { MatTableDataSource, MatSort } from '@angular/material';
 
+import { Observable } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { Employee } from '../../models/employees.model';
+import { AppState } from '../../app.state';
+import { Router } from '@angular/router';
+
+
+
+
+
 export interface PeriodicElement {
   name: string;
   position: number;
@@ -25,14 +35,21 @@ const ELEMENT_DATA: PeriodicElement[] = [
 })
 export class EmployeesComponent implements OnInit {
 
-  displayedColumns: string[] = ['name', 'position', 'weight', 'symbol', 'actions'];
-  dataSource = new MatTableDataSource(ELEMENT_DATA);
+  employees: Observable<Employee[]>;
+
+  displayedColumns: string[] = ['name', 'age', 'username', 'hireDate', 'actions'];
+  dataSource = new MatTableDataSource();
   @ViewChild('filterValue') filterValueRef: ElementRef;
 
 
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor() { }
+  constructor(private store: Store<AppState>, private router: Router) {
+    this.employees = store.select('employee');
+    this.employees.subscribe(employees =>
+      this.dataSource = new MatTableDataSource(employees)
+    );
+  }
 
   ngOnInit() {
     this.dataSource.sort = this.sort;
@@ -46,5 +63,18 @@ export class EmployeesComponent implements OnInit {
     this.filterValueRef.nativeElement.value = '';
     this.dataSource.filter = '';
   }
+
+  view(id: number) {
+    this.router.navigateByUrl('/some-user/view/' + id);
+  }
+
+  edit(id: number) {
+    this.router.navigateByUrl('/some-user/edit/' + id);
+  }
+
+  add() {
+    this.router.navigateByUrl('/some-user/new/');
+  }
+
 
 }

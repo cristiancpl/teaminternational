@@ -1,17 +1,20 @@
-export interface ItemBase {
+import { Country } from "./countries.model";
+
+export class ItemBase {
   id: number;
   name: string;
   status: boolean;
 }
 
-export interface Employee extends ItemBase {
+export class Employee extends ItemBase {
   dob: Date;
-  country: number;
+  country: Country;
   username: string;
   hireDate: Date;
   area: ItemBase;
   jobTitle: ItemBase;
   tipRate: number;
+  age: number;
 }
 
 
@@ -33,32 +36,5 @@ export const JOB_TITLE_DATA: ItemBase[] = [
   { id: 7, name: 'Sous chef', status: true },
   { id: 8, name: 'Dishwasher', status: true },
   { id: 9, name: 'Cook', status: true }
-];
-
-export const EMPLOYESS_DATA: Employee[] = [
-  {
-    id: 1,
-    name: 'Cristian Pérez',
-    status: true,
-    dob: new Date(),
-    country: 1,
-    username: 'cperez',
-    hireDate: new Date(),
-    area: { id: 1, name: 'Services' } as ItemBase,
-    jobTitle: { id: 1, name: 'Manager' } as ItemBase,
-    tipRate: 0
-  },
-  {
-    id: 1,
-    name: 'Jhon López',
-    status: true,
-    dob: new Date(),
-    country: 1,
-    username: 'janierx',
-    hireDate: new Date(),
-    area: { id: 2, name: 'Kitchen' } as ItemBase,
-    jobTitle: { id: 2, name: 'Host' } as ItemBase,
-    tipRate: 0
-  }
 ];
 

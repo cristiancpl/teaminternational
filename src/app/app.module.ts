@@ -3,6 +3,9 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+import { StoreModule } from '@ngrx/store';
+import { reducer } from './reducers/employee.reducer';
+
 import { AppComponent } from './app.component';
 import { UiModule } from './ui/ui.module';
 import { EmployeesComponent } from './ui/employees/employees.component';
@@ -21,9 +24,13 @@ import { SomeUserComponent } from './ui/some-user/some-user.component';
     RouterModule.forRoot([
       { path: '', redirectTo: 'employees', pathMatch: 'full' },
       { path: 'employees', component: EmployeesComponent },
-      { path: 'some-user', component: SomeUserComponent },
+      { path: 'some-user/:view/:id', component: SomeUserComponent },
       { path: '**', redirectTo: 'employees' }
-    ])
+    ]),
+
+    StoreModule.forRoot({
+      employee: reducer
+    })
   ],
 
   providers: [],

@@ -3,11 +3,10 @@
   <div class="navbar-expand mr-auto">
     <div class="navbar-nav">
       <a (click)="Employees()"
-         [class.active]="router.url == '/employees'"
+         [class.active]="router.url.startsWith('/employees')"
          class="nav-item nav-link link active" >Employees</a>
-      <a (click)="SomeUser()"
-         [class.active]="router.url == '/some-user'"
-         class="nav-item nav-link link">Some user</a>
+      <a [class.active]="router.url.startsWith('/some-user')"
+         class="nav-item nav-link">Some user</a>
     </div>
   </div>
   <div class="navbar-expand ml-auto navbar-nav">

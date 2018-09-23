@@ -30,5 +30,17 @@
 }
 
 .status {
+  margin-top: 10px;
+}
+
+
+@media only screen and (min-width: 480px) and (max-width: 767px) {
+
+  .job-title {
     margin-top: 10px;
+  }
+
+  .tip-rate {
+    margin-top: 0px;
+  }
 }
