@@ -1,6 +1,6 @@
 # Test for Team international
 
-This project was generated with [Angular CLI](https://angular.io/guide/quickstart) version 6.0.0.
+This project was generated with [Node.js](https://nodejs.org/en/) version 8.12.0 and [Angular CLI](https://angular.io/guide/quickstart) version 6.0.0.
 
 ## Development server
 
