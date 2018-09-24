@@ -6,6 +6,7 @@ import { Store } from '@ngrx/store';
 import { Employee } from '../../models/employees.model';
 import { AppState } from '../../app.state';
 import { Router } from '@angular/router';
+import { SnotifyService } from 'ng-snotify';
 
 import { DialogConfirmComponent } from '../dialog-confirm/dialog-confirm.component';
 import * as EmployeeActions from '../../actions/employess.actions';
@@ -25,7 +26,8 @@ export class EmployeesComponent implements OnInit {
 
   constructor(public dialog: MatDialog,
     private store: Store<AppState>,
-    private router: Router) {
+    private router: Router,
+    private snotifyService: SnotifyService) {
     this.employees = store.select('employee');
     this.getEmployees();
   }
@@ -69,6 +71,7 @@ export class EmployeesComponent implements OnInit {
     dialogRef.afterClosed().subscribe(employee => {
       if (employee) {
         this.store.dispatch(new EmployeeActions.RemoveEmployee(employee));
+        this.snotifyService.success('The Employee has been deleted', 'Success');
       }
       this.getEmployees();
     });

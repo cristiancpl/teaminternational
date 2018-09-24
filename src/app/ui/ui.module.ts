@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+import { SnotifyModule, SnotifyService, ToastDefaults } from 'ng-snotify';
 
 import { LayoutComponent } from './layout/layout.component';
 import { HeaderComponent } from './header/header.component';
@@ -56,6 +57,9 @@ import { JobTitleChildComponent } from './job-title-child/job-title-child.compon
     CommonModule,
     FormsModule,
     HttpModule,
+
+    SnotifyModule,
+
     ReactiveFormsModule.withConfig({ warnOnNgModelWithFormControl: 'never' }),
 
     MatFormFieldModule,

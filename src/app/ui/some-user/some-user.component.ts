@@ -9,6 +9,7 @@ import { Country } from '../../models/countries.model';
 import { AREA_DATA } from '../../models/base.model';
 import * as EmployeeActions from '../../actions/employess.actions';
 import { FormControl, Validators, FormGroup, FormBuilder } from '@angular/forms';
+import { SnotifyService } from 'ng-snotify';
 
 enum Views { new, edit, view }
 enum JobTitleEnum { waitress = 4, dining = 5 }
@@ -39,7 +40,8 @@ export class SomeUserComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private store: Store<AppState>,
     private countriesService: CountriesService,
-    private formBuilder: FormBuilder) {
+    private formBuilder: FormBuilder,
+    private snotifyService: SnotifyService) {
 
     this.employees = store.select('employee');
     this.maxDob = new Date();
@@ -115,9 +117,11 @@ export class SomeUserComponent implements OnInit {
     this.currentEmployee.age = this.calculateAge(this.currentEmployee.dob);
     if (this.view == this.views.new) {
       this.store.dispatch(new EmployeeActions.AddEmployee(this.currentEmployee));
+      this.snotifyService.success('The Employee has been added', 'Success');
     }
     else if (this.view == this.views.edit) {
       this.store.dispatch(new EmployeeActions.EditEmployee(this.currentEmployee));
+      this.snotifyService.success('The Employee has been updated', 'Success');
     }
 
     this.router.navigateByUrl('/employees');

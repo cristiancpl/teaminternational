@@ -3,6 +3,8 @@
 @import "~font-awesome/css/font-awesome.css";
 @import "~@angular/material/prebuilt-themes/deeppurple-amber.css";
 
+@import "~ng-snotify/styles/material.css";
+
 .link {
   cursor: pointer;
 }
@@ -18,8 +20,4 @@
 
 .container {
   margin-top: -20px;
-}
-
-.fixed {
-  /*position: sticky;*/
 }

@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { SnotifyModule, SnotifyService, ToastDefaults } from 'ng-snotify';
 
 import { StoreModule } from '@ngrx/store';
 import { reducer } from './reducers/employee.reducer';
@@ -17,6 +18,7 @@ import { SomeUserComponent } from './ui/some-user/some-user.component';
   ],
   imports: [
     BrowserModule,
+    SnotifyModule,
     BrowserAnimationsModule,
     UiModule,
 
@@ -33,7 +35,10 @@ import { SomeUserComponent } from './ui/some-user/some-user.component';
     })
   ],
 
-  providers: [],
+  providers: [
+    { provide: 'SnotifyToastConfig', useValue: ToastDefaults },
+    SnotifyService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
