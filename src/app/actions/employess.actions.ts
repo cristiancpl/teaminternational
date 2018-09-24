@@ -14,7 +14,7 @@ export class AddEmployee implements Action {
 
 export class RemoveEmployee implements Action {
   readonly type = REMOVE_EMPLOYEE;
-  constructor(public payload: number) { }
+  constructor(public payload: Employee) { }
 }
 
 export class EditEmployee implements Action {

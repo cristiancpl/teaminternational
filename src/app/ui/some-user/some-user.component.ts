@@ -7,6 +7,8 @@ import { AppState } from '../../app.state';
 import { CountriesService } from '../../shared/countries.service';
 import { Country } from '../../models/countries.model';
 import { AREA_DATA } from '../../models/base.model';
+import * as EmployeeActions from '../../actions/employess.actions';
+import { FormControl, Validators, FormGroup, FormBuilder } from '@angular/forms';
 
 enum Views { new, edit, view }
 enum JobTitleEnum { waitress = 4, dining = 5 }
@@ -29,13 +31,19 @@ export class SomeUserComponent implements OnInit {
   areas = AREA_DATA;
   jobsTitleEnum = JobTitleEnum;
 
+  userForm: FormGroup;
+
   constructor(private router: Router,
     private activatedRoute: ActivatedRoute,
     private store: Store<AppState>,
-    private countriesService: CountriesService) {
+    private countriesService: CountriesService,
+    private formBuilder: FormBuilder) {
 
     this.employees = store.select('employee');
   }
+
+
+  //heroForm: FormGroup;
 
   ngOnInit() {
     this.sub = this.activatedRoute.params.subscribe(params => {
@@ -44,7 +52,11 @@ export class SomeUserComponent implements OnInit {
       this.view = <Views>Views[name_enum];
       this.currentEmployee.id = params['id'];
 
-      if (this.view != this.views.new) {
+      if (this.view == this.views.new) {
+        this.currentEmployee.status = true;
+        this.currentEmployee.area = this.areas[0];
+      }
+      else {
         this.employees.subscribe(employees => {
           this.currentEmployee = employees.find(x => x.id == this.currentEmployee.id);
           this.currentEmployee.area = this.areas.find(x => x.id == this.currentEmployee.area.id);
@@ -57,7 +69,19 @@ export class SomeUserComponent implements OnInit {
 
     });
 
+    this.userForm = this.formBuilder.group({
+      nameFormControl: ['', Validators.required],
+      dobFormControl: ['', Validators.required],
+      countryFormControl: ['', Validators.required],
+      usernameFormControl: ['', Validators.required],
+      hireDateFormControl: ['', Validators.required],
+      tipRateFormControl: ['', Validators.required],
+    });
+
   }
+
+  get f() { return this.userForm.controls; }
+
 
   back() {
     this.router.navigateByUrl('/employees');
@@ -80,7 +104,14 @@ export class SomeUserComponent implements OnInit {
   }
 
   save() {
-    console.log(this.currentEmployee);
+    if (this.view == this.views.new) {
+      this.store.dispatch(new EmployeeActions.AddEmployee(this.currentEmployee));
+    }
+    else if (this.view == this.views.edit) {
+      this.store.dispatch(new EmployeeActions.EditEmployee(this.currentEmployee));
+    }
+
+    this.router.navigateByUrl('/employees');
   }
 
   selectJobTitleParent(jobTitle) {

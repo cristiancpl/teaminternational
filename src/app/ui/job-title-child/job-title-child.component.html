@@ -1,9 +1,16 @@
 <mat-form-field>
   <mat-select [ngModel]="job_title"
               (ngModelChange)="onSelectJobTitle($event)"
+              [disabled]="disabled"
+              
+              name="job_title"
               placeholder="Job title">
     <mat-option *ngFor="let job of job_titles" [value]="job">
       {{job.name}}
     </mat-option>
   </mat-select>
+  <!--formControlName="JobTitleFormControl"-->
+            <!--<mat-error *ngIf="JobTitleFormControl.invalid">
+              Job title is <strong>required</strong>
+            </mat-error>-->
 </mat-form-field>

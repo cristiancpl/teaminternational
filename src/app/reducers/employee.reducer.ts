@@ -1,4 +1,3 @@
-import { Action } from '@ngrx/store';
 import { Employee } from './../models/employees.model';
 import * as EmployeeActions from './../actions/employess.actions';
 import { Country } from '../models/countries.model';
@@ -13,7 +12,7 @@ const initialState: Employee[] = [{
   username: 'cperez',
   hireDate: new Date(2016, 8, 3),
   area: { id: 1 } as ItemBase,
-  jobTitle: { id: 1 } as JobTitle,
+  jobTitle: { id: 1, name: 'Manager' } as JobTitle,
   tipRate: 0,
   age: 25
 },
@@ -26,7 +25,7 @@ const initialState: Employee[] = [{
   username: 'janierx',
   hireDate: new Date(2012, 2, 5),
   area: { id: 2 } as ItemBase,
-  jobTitle: { id: 6 } as JobTitle,
+  jobTitle: { id: 6, name: 'Chef' } as JobTitle,
   tipRate: 2.3,
   age: 32
 },
@@ -39,7 +38,7 @@ const initialState: Employee[] = [{
   username: 'falbeiro',
   hireDate: new Date(2017, 5, 20),
   area: { id: 2 } as ItemBase,
-  jobTitle: { id: 7 } as JobTitle,
+  jobTitle: { id: 7, name: 'Sous chef'} as JobTitle,
   tipRate: 0,
   age: 20
 },
@@ -52,7 +51,7 @@ const initialState: Employee[] = [{
   username: 'luzelena',
   hireDate: new Date(),
   area: { id: 1 } as ItemBase,
-  jobTitle: { id: 5 } as JobTitle,
+  jobTitle: { id: 5, name: 'Dining room manager'} as JobTitle,
   tipRate: 0,
   age: 43
 }
@@ -63,6 +62,13 @@ export function reducer(state: Employee[] = initialState, action: EmployeeAction
   switch (action.type) {
     case EmployeeActions.ADD_EMPLOYEE:
       return [...state, action.payload];
+    case EmployeeActions.REMOVE_EMPLOYEE:
+      state.splice(state.indexOf(action.payload), 1);
+      return state;
+    case EmployeeActions.EDIT_EMPLOYEE:
+      let current = state.find(x => x.id == action.payload.id);
+      current = action.payload;
+      return state;
     default:
       return state;
   }

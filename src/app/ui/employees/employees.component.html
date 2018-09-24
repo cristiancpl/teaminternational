@@ -61,7 +61,7 @@
         <td mat-cell *matCellDef="let element" class="actions">
           <i (click)="edit(element.id)" class="fa fa-pencil action link" matTooltip="Edit"></i>
           <i (click)="view(element.id)" class="fa fa-eye action link" matTooltip="View"></i>
-          <i class="fa fa-trash-o action link" matTooltip="Delete"></i>
+          <i (click)="delete(element)" class="fa fa-trash-o action link" matTooltip="Delete"></i>
         </td>
       </ng-container>
 

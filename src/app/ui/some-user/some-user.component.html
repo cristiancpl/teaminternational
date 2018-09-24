@@ -1,101 +1,156 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-12">
-      <h3>New employee</h3>
-    </div>
-    <div class="col-md-12">
-      <div class="row col-md-9 col-md-offset-5">
+    <!--<form [formGroup]="userForm" (ngSubmit)="save()">-->
+      <div class="col-md-12 title">
+        <h3 *ngIf="view == views.new">New employee</h3>
+        <h3 *ngIf="view == views.edit">Editing: {{currentEmployee?.name}}</h3>
+        <h3 *ngIf="view == views.view">Viewing: {{currentEmployee?.name}}</h3>
+      </div>
+      <div class="col-md-12">
+        <div class="row col-md-9 col-md-offset-5">
 
-        <div class="col-md-6 inputs-container">
-          <mat-form-field>
-            <input matInput
-                   [ngModel]="currentEmployee?.name"
-                   (ngModelChange)="currentEmployee.name = $event"
-                   placeholder="Name">
-          </mat-form-field>
+          <div class="col-md-6 inputs-container">
+            <mat-form-field>
+              <input matInput
+                     [ngModel]="currentEmployee?.name"
+                     (ngModelChange)="currentEmployee.name = $event"
+                     [disabled]="view == views.view"
+                
+                     name="name"
+                     placeholder="Name">
+                   <!--formControlName="nameFormControl"-->
 
-          <mat-form-field>
-            <input matInput
-                   [ngModel]="currentEmployee?.dob"
-                   (ngModelChange)="currentEmployee.dob = $event"
-                   [matDatepicker]="pickerDob"
-                   placeholder="Dob">
-            <mat-datepicker-toggle matSuffix [for]="pickerDob"></mat-datepicker-toggle>
-            <mat-datepicker #pickerDob></mat-datepicker>
-          </mat-form-field>
+              <!--<mat-error  *ngIf="f.nameFormControl.invalid">
+                Name is <strong>required</strong>
+              </mat-error>-->
+            </mat-form-field>
 
-          <mat-form-field>
-            <mat-select [ngModel]="currentEmployee?.country"
-                        (ngModelChange)="currentEmployee.country = $event"
-                        placeholder="Country">
-              <mat-option *ngFor="let country of countries" [value]="country">
-                {{country.name}}
-              </mat-option>
-            </mat-select>
-          </mat-form-field>
+            <mat-form-field>
+              <input matInput
+                     [ngModel]="currentEmployee?.dob"
+                     (ngModelChange)="currentEmployee.dob = $event"
+                     [matDatepicker]="pickerDob"
+                     [disabled]="view == views.view"
+                     
+                     name="dob"
+                     placeholder="Dob">
+              <!--formControlName="dobFormControl"-->
+              <!--<mat-error *ngIf="f.dobFormControl.invalid">
+                Dob is <strong>required</strong>
+              </mat-error>-->
+              <mat-datepicker-toggle matSuffix [for]="pickerDob"></mat-datepicker-toggle>
+              <mat-datepicker #pickerDob></mat-datepicker>
+            </mat-form-field>
 
-          <mat-form-field>
-            <input matInput
-                   [ngModel]="currentEmployee?.username"
-                   (ngModelChange)="currentEmployee.username = $event"
-                   placeholder="Username">
-          </mat-form-field>
+            <mat-form-field>
+              <mat-select [ngModel]="currentEmployee?.country"
+                          (ngModelChange)="currentEmployee.country = $event"
+                          [disabled]="view == views.view"
+                          
+                          name="country"
+                          placeholder="Country">
+                <mat-option *ngFor="let country of countries" [value]="country">
+                  {{country.name}}
+                </mat-option>
+              </mat-select>
+              <!--formControlName="countryFormControl"-->
+              <!--<mat-error *ngIf="f.countryFormControl.invalid">
+                Country is <strong>required</strong>
+              </mat-error>-->
+            </mat-form-field>
 
-          <mat-form-field>
-            <input matInput
-                   [ngModel]="currentEmployee?.hireDate"
-                   (ngModelChange)="currentEmployee.hireDate = $event"
-                   [matDatepicker]="pickerHireDate"
-                   placeholder="Hire Date">
-            <mat-datepicker-toggle matSuffix [for]="pickerHireDate"></mat-datepicker-toggle>
-            <mat-datepicker #pickerHireDate></mat-datepicker>
-          </mat-form-field>
+            <mat-form-field>
+              <input matInput
+                     [ngModel]="currentEmployee?.username"
+                     (ngModelChange)="currentEmployee.username = $event"
+                     [disabled]="view == views.view"
+                     
+                     name="username"
+                     placeholder="Username">
+              <!--formControlName="usernameFormControl"-->
+              <!--<mat-error *ngIf="f.usernameFormControl.invalid">
+                Username is <strong>required</strong>
+              </mat-error>-->
+            </mat-form-field>
 
-          <mat-slide-toggle [ngModel]="currentEmployee?.status"
-                            (ngModelChange)="currentEmployee.status = $event"
-                            labelPosition="before"
-                            class="status">Status</mat-slide-toggle>
-        </div>
+            <mat-form-field>
+              <input matInput
+                     [ngModel]="currentEmployee?.hireDate"
+                     (ngModelChange)="currentEmployee.hireDate = $event"
+                     [matDatepicker]="pickerHireDate"
+                     [disabled]="view == views.view"
+                     
+                     name="hireDate"
+                     placeholder="Hire Date">
+              <!--formControlName="hireDateFormControl"-->
+              <!--<mat-error *ngIf="f.hireDateFormControl.invalid">
+                Hire Date is <strong>required</strong>
+              </mat-error>-->
+              <mat-datepicker-toggle matSuffix [for]="pickerHireDate"></mat-datepicker-toggle>
+              <mat-datepicker #pickerHireDate></mat-datepicker>
+            </mat-form-field>
 
-        <div class="col-md-6 inputs-container">
+            <mat-slide-toggle [ngModel]="currentEmployee?.status"
+                              (ngModelChange)="currentEmployee.status = $event"
+                              [disabled]="view == views.view"
+                              name="status"
+                              labelPosition="before"
+                              class="status">Status</mat-slide-toggle>
+          </div>
 
-          <mat-button-toggle-group [ngModel]="currentEmployee?.area"
-                                   (ngModelChange)="currentEmployee.area = $event"
-                                   name="areaname"
-                                   class="area">
-            <mat-button-toggle *ngFor="let area of areas" [value]="area">{{area.name}}</mat-button-toggle>
-          </mat-button-toggle-group>
+          <div class="col-md-6 inputs-container">
 
-          <app-job-title-child [area]="currentEmployee?.area"
-                               [job_title]="currentEmployee?.jobTitle"
-                               (selectJobTitle)="selectJobTitleParent($event)"
-                               class="job-title">
-          </app-job-title-child>
+            <mat-button-toggle-group [ngModel]="currentEmployee?.area"
+                                     (ngModelChange)="currentEmployee.area = $event"
+                                     [disabled]="view == views.view"
+                                     name="area"
+                                     class="area">
+              <mat-button-toggle *ngFor="let area of areas" [value]="area">{{area.name}}</mat-button-toggle>
+            </mat-button-toggle-group>
 
-          <mat-form-field *ngIf="currentEmployee?.jobTitle?.id == jobsTitleEnum.waitress.valueOf() ||
+            <app-job-title-child [area]="currentEmployee?.area"
+                                 [job_title]="currentEmployee?.jobTitle"
+                                 [disabled]="view == views.view"
+                                 (selectJobTitle)="selectJobTitleParent($event)"
+                                 class="job-title">
+            </app-job-title-child>
+
+            <mat-form-field *ngIf="currentEmployee?.jobTitle?.id == jobsTitleEnum.waitress.valueOf() ||
                           currentEmployee?.jobTitle?.id == jobsTitleEnum.dining.valueOf()"
-                          class="tip-rate">
-            <input matInput
-                   [ngModel]="currentEmployee?.tipRate"
-                   (ngModelChange)="currentEmployee.tipRate = $event"
-                   placeholder="Tip Rate">
-          </mat-form-field>
+                            class="tip-rate">
+              <input matInput
+                     [ngModel]="currentEmployee?.tipRate"
+                     (ngModelChange)="currentEmployee.tipRate = $event"
+                     [disabled]="view == views.view"
+                     
+                     name="tipRate"
+                     placeholder="Tip Rate">
+              <!--formControlName="tipRateFormControl"-->
+              <!--<mat-error *ngIf="f.tipRateFormControl.invalid">
+                Tip Rate is <strong>required</strong>
+              </mat-error>-->
+            </mat-form-field>
+
+          </div>
 
         </div>
 
       </div>
+      <div class="buttons">
+        <button mat-button (click)="back()" class="button">
+          <i class="fa fa-angle-left fa-lg action"></i>
+          Back
+        </button>
 
-    </div>
-    <div class="buttons">
-      <button mat-button (click)="back()" class="button">
-        <i class="fa fa-angle-left fa-lg action"></i>
-        Back
-      </button>
-
-      <button mat-stroked-button (click)="save()" class="button">
-        Save
-      </button>
-    </div>
+        <button mat-stroked-button
+                *ngIf="view != views.view"
+                (click)="save()"
+  
+                class="button">
+          Save
+        </button>
+      </div>
+    <!--</form>-->
   </div>
 </div>
 

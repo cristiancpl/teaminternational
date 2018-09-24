@@ -1,15 +1,14 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-
-
 
 import { LayoutComponent } from './layout/layout.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { EmployeesComponent } from './employees/employees.component';
 import { SomeUserComponent } from './some-user/some-user.component';
+import { DialogConfirmComponent } from './dialog-confirm/dialog-confirm.component';
 
 import {
   MatFormFieldModule,
@@ -48,13 +47,16 @@ import {
   MatTooltipModule,
   MatTreeModule,
 } from '@angular/material';
+
 import { JobTitleChildComponent } from './job-title-child/job-title-child.component';
+
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     HttpModule,
+    ReactiveFormsModule,
 
     MatFormFieldModule,
     MatBadgeModule,
@@ -93,7 +95,8 @@ import { JobTitleChildComponent } from './job-title-child/job-title-child.compon
     MatTreeModule,
 
   ],
-  declarations: [LayoutComponent, HeaderComponent, FooterComponent, EmployeesComponent, SomeUserComponent, JobTitleChildComponent],
+  declarations: [LayoutComponent, HeaderComponent, FooterComponent, EmployeesComponent, SomeUserComponent, JobTitleChildComponent, DialogConfirmComponent],
+  entryComponents: [DialogConfirmComponent],
   exports: [
     LayoutComponent,
   ]

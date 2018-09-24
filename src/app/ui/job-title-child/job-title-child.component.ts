@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { ItemBase, JobTitle } from '../../models/base.model';
 import { JOB_TITLE_DATA } from '../../models/base.model';
+import { FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-job-title-child',
@@ -11,6 +12,7 @@ export class JobTitleChildComponent implements OnInit {
 
   private _area: ItemBase;
   private _job_title: JobTitle;
+  private _disabled: boolean;
   job_titles: JobTitle[] = [];
 
   @Input()
@@ -30,10 +32,22 @@ export class JobTitleChildComponent implements OnInit {
     return this._job_title;
   }
 
+  @Input()
+  set disabled(disabled: boolean) {
+    this._disabled = disabled ? true : false;
+  }
+  get disabled(): boolean {
+    return this._disabled;
+  }
+
   @Output() selectJobTitle = new EventEmitter<JobTitle>();
   onSelectJobTitle(jobTitle: JobTitle) {
     this.selectJobTitle.emit(jobTitle);
   }
+
+  JobTitleFormControl = new FormControl('', [
+    Validators.required,
+  ]);
 
   constructor() { }
 
