@@ -56,7 +56,7 @@ import { JobTitleChildComponent } from './job-title-child/job-title-child.compon
     CommonModule,
     FormsModule,
     HttpModule,
-    ReactiveFormsModule,
+    ReactiveFormsModule.withConfig({ warnOnNgModelWithFormControl: 'never' }),
 
     MatFormFieldModule,
     MatBadgeModule,

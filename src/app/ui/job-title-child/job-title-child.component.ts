@@ -45,10 +45,6 @@ export class JobTitleChildComponent implements OnInit {
     this.selectJobTitle.emit(jobTitle);
   }
 
-  JobTitleFormControl = new FormControl('', [
-    Validators.required,
-  ]);
-
   constructor() { }
 
   ngOnInit() {

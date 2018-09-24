@@ -33,6 +33,8 @@ export class SomeUserComponent implements OnInit {
 
   userForm: FormGroup;
 
+  maxDob: Date;
+
   constructor(private router: Router,
     private activatedRoute: ActivatedRoute,
     private store: Store<AppState>,
@@ -40,12 +42,13 @@ export class SomeUserComponent implements OnInit {
     private formBuilder: FormBuilder) {
 
     this.employees = store.select('employee');
+    this.maxDob = new Date();
+    this.maxDob.setFullYear(this.maxDob.getFullYear() - 18);
   }
 
 
-  //heroForm: FormGroup;
-
   ngOnInit() {
+
     this.sub = this.activatedRoute.params.subscribe(params => {
 
       let name_enum: string = params['view'];
@@ -70,17 +73,22 @@ export class SomeUserComponent implements OnInit {
     });
 
     this.userForm = this.formBuilder.group({
-      nameFormControl: ['', Validators.required],
-      dobFormControl: ['', Validators.required],
-      countryFormControl: ['', Validators.required],
-      usernameFormControl: ['', Validators.required],
-      hireDateFormControl: ['', Validators.required],
-      tipRateFormControl: ['', Validators.required],
+      nameFormControl: [{ value: '', disabled: this.view == this.views.view }, Validators.required],
+      dobFormControl: [{ value: '', disabled: this.view == this.views.view }, [Validators.required]],
+      countryFormControl: [{ value: '', disabled: this.view == this.views.view }, Validators.required],
+      usernameFormControl: [{ value: '', disabled: this.view == this.views.view }, [Validators.required, Validators.pattern('^[a-zA-Z0-9äöüÄÖÜ]*$')]],
+      hireDateFormControl: [{ value: '', disabled: this.view == this.views.view }, Validators.required],
+      statusFormControl: [{ value: '', disabled: this.view == this.views.view }, Validators.required],
+
     });
 
   }
 
-  get f() { return this.userForm.controls; }
+  get nameFormControl() { return this.userForm.get('nameFormControl'); }
+  get dobFormControl() { return this.userForm.get('dobFormControl'); }
+  get countryFormControl() { return this.userForm.get('countryFormControl'); }
+  get usernameFormControl() { return this.userForm.get('usernameFormControl'); }
+  get hireDateFormControl() { return this.userForm.get('hireDateFormControl'); }
 
 
   back() {
@@ -104,6 +112,7 @@ export class SomeUserComponent implements OnInit {
   }
 
   save() {
+    this.currentEmployee.age = this.calculateAge(this.currentEmployee.dob);
     if (this.view == this.views.new) {
       this.store.dispatch(new EmployeeActions.AddEmployee(this.currentEmployee));
     }
@@ -116,6 +125,12 @@ export class SomeUserComponent implements OnInit {
 
   selectJobTitleParent(jobTitle) {
     this.currentEmployee.jobTitle = jobTitle;
+  }
+
+  calculateAge(dob: Date) {
+    let ageDifMs = Date.now() - dob.getTime();
+    let ageDate = new Date(ageDifMs);
+    return Math.abs(ageDate.getUTCFullYear() - 1970);
   }
 
 }
