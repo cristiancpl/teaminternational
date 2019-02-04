@@ -4,7 +4,7 @@ import { Employee } from '../../models/employees.model';
 import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../app.state';
-import { CountriesService } from '../../shared/countries.service';
+import { CountriesService } from '../../services/countries.service';
 import { Country } from '../../models/countries.model';
 import { AREA_DATA } from '../../models/base.model';
 import * as EmployeeActions from '../../actions/employess.actions';
